@@ -41,6 +41,10 @@ public class RouteDAO extends BaseDAO<Route> {
         return read("select * from route where origin_id = ? AND destination_id = ?",
                 new Object[] {airportCode, ac});
     }
+    public List<Route> readAirportById(Integer id) throws SQLException, ClassNotFoundException {
+        return read("select * from route where id = ?",
+                new Object[] {id});
+    }
 
     @Override
     public List<Route> extractData(ResultSet rs) throws ClassNotFoundException, SQLException {
@@ -58,5 +62,6 @@ public class RouteDAO extends BaseDAO<Route> {
         }
         return routes;
     }
+
 
 }

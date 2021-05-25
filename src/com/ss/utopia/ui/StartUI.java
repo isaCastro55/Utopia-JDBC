@@ -5,31 +5,28 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class StartUI {
+    private static  EmployeeUI eui = new EmployeeUI();
+    private static AdminUI aui = new AdminUI();
+    private static TravelerUI tui = new TravelerUI();
     public static void main(String [] args) throws SQLException {
         while(true) {
             Integer choice = selectOptionMain();
             switch (choice) {
                 case 1:
-                    EmployeeUI.ui();
+                    eui.ui();
                     break;
                 case 2:
-                    admin();
+                    aui.ui();
                     break;
                 case 3:
-                    TravelerUI.ui();
+                    tui.ui();
                     break;
             }
         }
     }
 
 
-    public static void admin(){
 
-    }
-
-    public static void traveler(){
-
-    }
 
 
 

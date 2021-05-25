@@ -56,7 +56,47 @@ public class TravelerUI {
                 break;
         }
     }
+    // prints all flights
+    public static void option1(List<Flight> flights) throws SQLException {
+        Integer c = selectOption1(flights);
+        if(c!=flights.size()+1){
+            option12(flights, c);
+        }
+        else{
+            TRAV1();
+        }
+    }
 
+    //View flight details for booking ticket or Quit
+    public static void option12(List<Flight> flights, Integer pos) throws SQLException {
+        Integer choice = selectOption12();
+        Flight flight = flights.get(pos-1);
+        if(choice == 1){
+            option121(flights, pos,flight);
+
+        }
+        else{
+            TRAV1();
+        }
+
+    }
+
+    // Displays details and books ticket then quits
+    public static void option121(List<Flight> flights, Integer pos,Flight flight) throws SQLException {
+        Integer choice =selectOption121(flight);
+
+        if(choice == 1){
+            Booking book = new Booking();
+            book.setIsActive((short) 1);
+            String conf= genCode();
+            book.setConfirmCode(conf);
+            trav.bookTicket(flight, book);
+            TRAV1();
+        }
+
+    }
+
+    // Display flight for canceling tickets
     public static void option2(List<Flight> flights) throws SQLException {
         Integer choice = selectOption2(flights);
         if(choice!=flights.size()+1){
@@ -66,6 +106,8 @@ public class TravelerUI {
             TRAV1();
         }
     }
+
+    // Confirm Cancellation and return to prev menu
     public static void option21(List<Flight> flights, Integer c) throws SQLException {
         Flight chosen= flights.get(c-1);
         Integer choice =selectOption21(chosen);
@@ -76,6 +118,8 @@ public class TravelerUI {
 
 
     }
+
+
     public static Integer selectOption21(Flight flights){
         Integer y = 0;
         while(true){
@@ -132,41 +176,7 @@ public class TravelerUI {
         return y;
     }
 
-    public static void option1(List<Flight> flights) throws SQLException {
-        Integer c = selectOption1(flights);
-        if(c!=flights.size()+1){
-            option12(flights, c);
-        }
-        else{
-            TRAV1();
-        }
-    }
 
-    public static void option12(List<Flight> flights, Integer pos) throws SQLException {
-        Integer choice = selectOption12();
-        Flight flight = flights.get(pos-1);
-        if(choice == 1){
-            option121(flights, pos,flight);
-
-        }
-        else{
-            TRAV1();
-        }
-
-    }
-    public static void option121(List<Flight> flights, Integer pos,Flight flight) throws SQLException {
-        Integer choice =selectOption121(flight);
-
-        if(choice == 1){
-            Booking book = new Booking();
-            book.setIsActive((short) 1);
-            String conf= genCode();
-            book.setConfirmCode(conf);
-            trav.bookTicket(flight, book);
-            TRAV1();
-        }
-
-    }
     public static String genCode() {
         int leftLimit = 48; // numeral '0'
         int rightLimit = 122; // letter 'z'

@@ -225,7 +225,7 @@ public class EmployeeUI {
                 +" and Arrival Airport: "+destAirport+".");
         System.out.println("Departure Airport: "+ogAirport+" | Arrival Airport: "
                 +destAirport+" | Departure Date: "+date
-                +" Departure Time: "+x.getDepartureTime().getTime());
+                +" Departure Time: "+x.getDepartureTime().toString());
 
         System.out.println("Available Seats: "+(x.getPlane().getType().getMaxCapacity()-x.getReservedSeats()));
         System.out.println("1) Return To Previous Menu");
